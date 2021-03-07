@@ -31,7 +31,8 @@ Date will store as current value by default.
 ![Screenshot (7)](https://user-images.githubusercontent.com/52347329/110246501-d7a58f80-7f8d-11eb-8945-9191c06d6a69.png)
 
 ### 8. If user have saved password then they will apear like this with the option to delete it. Clicking on delete button will refresh the current page
-and delete the password on which has clicked the delete (yellow) button.
+and delete the password on which has clicked the delete (yellow) button. User can save as many passwords of account they want. Every password will appear here.
+Every user can see their own passwords only.
 ![Screenshot (8)](https://user-images.githubusercontent.com/52347329/110246546-01f74d00-7f8e-11eb-9a24-8559790f6533.png)
 
 
