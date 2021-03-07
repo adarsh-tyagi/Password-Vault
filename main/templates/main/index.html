@@ -1,0 +1,245 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Password Vault</title>
+    <link href="{% static 'main/logo.svg' %}" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+    crossorigin="anonymous">
+
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #303030;
+        overflow-x: hidden;
+      }
+      nav{
+        background-color: crimson;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        position: fixed;
+        width: 100vw;
+        border-bottom-left-radius: 20px;
+        z-index: 100;
+        border-bottom: 5px solid black;
+      }
+      li{
+        list-style: none;
+        display: inline;
+        margin-right: 1rem;
+      }
+      a{
+        color: white;
+        text-decoration: none;
+      }
+      .header-link a:hover{
+        font-weight: bolder;
+        color: black;
+        border-bottom: 2px solid black;
+      }
+      .header-link a:active{
+        font-weight: bolder;
+        color: black;
+        border-bottom: 2px solid white;
+      }
+      h1{
+        color: black;
+        font-size: 1.5rem;
+        text-shadow: 2px 2px 3px #202020
+      }
+
+      .content{
+        position: absolute;
+        margin-top: 20vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+      }
+      .items {
+        margin: auto;
+        width: 80%;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .home-heading{
+        background-color: crimson;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+      .home-link{
+        background-color: crimson;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 3px solid white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+      }
+      .home-link a{
+          padding: 1rem;
+          text-decoration: none;
+          margin-bottom: 1rem;
+          border-radius: 8px;
+          border: 5px solid black;
+      }
+      .home-link a:hover{
+        color: white;
+        font-weight: bolder;
+        background-color: black;
+      }
+      .passwords{
+        background-color: crimson;
+        padding: 2rem 1rem;
+        border: 5px solid white;
+        border-radius: 10px;
+        width: 70%;
+      }
+      .pass-item{
+        background: #303030;
+        border: 3px solid black;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        padding: 1rem 0;
+      }
+      .i{
+        background-color: crimson;
+        padding: 0.5rem;
+        color: black;
+        font-weight: bold;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      .pass-item a{
+        background-color: yellow;
+        color: black;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        padding: 0.3rem 1rem;
+        border-radius: 5px;
+      }
+      form{
+        background-color: crimson;
+        padding: 2rem;
+        border-radius: 10px;
+        border: 3px solid white;
+        margin-bottom: 2rem;
+      }
+      button {
+        background-color: #00f;
+        padding: 0.5rem 1rem;
+        color: white;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+      }
+      button:hover{
+        background-color: black;
+        color: white;
+      }
+      input{
+        outline: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        display: block;
+        border: none;
+        width: 100%;
+      }
+      .form-link{
+        background-color: crimson;
+        padding: 0.3rem 1rem;
+        border: 2px solid white;
+        border-radius: 3px;
+      }
+      .form-link:hover{
+        background-color: black;
+        color: white;
+      }
+      .profile{
+        background-color: crimson;
+        border-radius: 10px;
+        border: 5px solid white;
+        padding: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .profile a{
+        background-color: #00f;
+        padding: 0.5rem 1rem;
+        border: 3px solid black;
+        border-radius: 5px;
+      }
+      .profile a:hover{
+        background-color: black;
+        color: white;
+      }
+      .value{
+        font-size: 1.5rem;
+        font-family: verdana;
+      }
+
+      @media (max-width: 500px){
+        .profile{
+          font-size: 1rem;
+        }
+        h1{
+          font-size: 1rem;
+        }
+        .header-link a{
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 350px){
+        .profile{
+          font-size: 0.7rem;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+      <nav>
+        <h1>Password Vault</h1>
+        <div>
+          <ul class="header-link">
+            <li><a href="/">Home</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="/profile">Hello {{user.username}}</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {% else %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+      <section class="content">
+        <div class="items">
+          {% block content %}
+          {% endblock %}
+        </div>
+
+      </section>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<div class="profile">
+{% if user.is_authenticated %}
+  <p>Name: {{user.username}}</p>
+  <p>Email: {{user.email}}</p>
+  <p>Total passwords saved: {{count}}</p>
+  <a href="/passwords">View passwords</a>
+{% endif %}
+</div>
+{% endblock %}

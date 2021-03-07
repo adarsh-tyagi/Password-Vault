@@ -1,0 +1,20 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+<h2 class="home-heading">Welcome to Password Vault</h2>
+<p>Create account today and store all your passwords here. No need to remember all those complex password. Now just remember
+one password of this account 😎</p>
+
+
+{% if user.is_authenticated %}
+<div class="home-link">
+  <a href="/passwords">View your passwords</a>
+  <a href="/createpassword">Save new password</a>
+  </div>
+{% else %}
+<div class="home-link">
+  <a href="/login">Login</a>
+  <a href="/register">Register</a>
+  </div>
+{% endif %}
+{% endblock %}
