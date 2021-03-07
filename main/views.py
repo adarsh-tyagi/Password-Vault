@@ -48,7 +48,8 @@ def logout_view(request):
 @login_required
 def passwords_view(request):
     password_list = PasswordModel.objects.filter(user=request.user)
-    return render(request, 'main/password.html', {'password_list': password_list})
+    count = len(password_list)
+    return render(request, 'main/password.html', {'password_list': password_list, "count": count})
 
 @login_required
 def create_password(request):
@@ -74,4 +75,4 @@ def delete_password(request, passwords_pk):
 def profile_view(request):
     password_list = PasswordModel.objects.filter(user=request.user)
     count = len(password_list)
-    return render(request, 'main/profile.html', {"msg": "Welcome to your profile", "user": request.user, 'password_list': password_list, "count": count})
+    return render(request, 'main/profile.html', {"user": request.user, 'password_list': password_list, "count": count})
