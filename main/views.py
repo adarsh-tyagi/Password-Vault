@@ -10,6 +10,29 @@ from .models import PasswordModel
 from django.utils import timezone
 from datetime import datetime
 
+def encryption(s, key):
+    alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$*&";
+    shiftedAlpha = alpha[key:]+alpha[0:key]
+    print(shiftedAlpha)
+    newS = ''
+    for i in s:
+        if i.upper() in alpha:
+            idx = alpha.index(i.upper())
+            if i.isupper():
+                newS += shiftedAlpha[idx]
+            else:
+                newS += shiftedAlpha[idx].lower()
+        else:
+            newS += i
+
+    print(newS)
+    return newS
+
+def decryption(s):
+    tempS = encryption(s, 36);
+    print(tempS)
+    return tempS
+
 # Create your views here.
 def home(request):
     return render(request,template_name='main/home.html', context={"msg": "hello"})
@@ -48,6 +71,8 @@ def logout_view(request):
 @login_required
 def passwords_view(request):
     password_list = PasswordModel.objects.filter(user=request.user)
+    for p in password_list:
+        p.password_value = decryption(p.password_value)
     count = len(password_list)
     return render(request, 'main/password.html', {'password_list': password_list, "count": count})
 
@@ -59,6 +84,7 @@ def create_password(request):
         try:
             form = PasswordForm(request.POST)
             new_pass = form.save(commit=False)
+            new_pass.password_value = encryption(new_pass.password_value, 5)
             new_pass.user = request.user
             new_pass.save()
             return redirect("main:passwords")
