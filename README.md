@@ -3,6 +3,7 @@
   No need to remember or write it down somewhere.
 - Frontend is developed in full HTML and CSS only.
 - User can create their account, save the passwords, view them and can also delete them.
+- User's passwords are saved in encrypted form in database. It is secure to use.
 - To run this project locally use command  : python manage.py runserver
 
 ## Here are some screenshots of my project ->
