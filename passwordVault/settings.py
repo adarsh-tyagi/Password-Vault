@@ -9,10 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-<<<<<<< HEAD
-=======
 
->>>>>>> eaae0e6981e2893f543e95d5dbe4d4991c1a9f87
 from pathlib import Path
 import os
 
